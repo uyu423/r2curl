@@ -1,0 +1,41 @@
+{
+  "name": "2curl",
+  "version": "0.0.1",
+  "description": "Node.js Request Wrapper (axios, fetch, ..) to cURL Command String",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uyu423/2curl.git"
+  },
+  "keywords": [
+    "curl",
+    "fetch",
+    "axios"
+  ],
+  "author": "Yowu Yu <me@yowu.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uyu423/2curl/issues"
+  },
+  "homepage": "https://github.com/uyu423/2curl#readme",
+  "dependencies": {
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.4",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-typescript": "^3.0.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.17.0",
+    "ts-loader": "^5.4.5",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  }
+}
