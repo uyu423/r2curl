@@ -18,7 +18,7 @@ export class CurlBuilder {
     }
     return Object.entries(this._adap.headers)
       .map(header => `-H '${header[0]}:${header[1]}'`)
-      .join();
+      .join(' ');
   }
 
   get body(): string {
