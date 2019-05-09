@@ -1,3 +1,4 @@
+import * as shelljs from 'shelljs';
 import { HTTP_METHOD } from '../enum/HTTP_METHOD';
 
 export default interface IRequestAdaptor {

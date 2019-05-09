@@ -9,9 +9,9 @@ Node.js Request Wrapper (axios, fetch, ..) to cURL Command String
 
 ## Roadmap
 
-- [ ] axios
+- [x] axios
   - [x] AxiosRequestConfig
-  - [ ] AxiosResposne
+  - [x] AxiosResposne
 - [ ] node-fetch
 - [ ] request
 - [ ] ...
@@ -20,13 +20,42 @@ Node.js Request Wrapper (axios, fetch, ..) to cURL Command String
 
 ### Basic
 
+### `AxiosResponse`
+
 ```typescript
 // if js, const r2curl = require('r2curl');
 import r2curl from 'r2curl';
 
-// requestConfig as AxiosRequestConfig in axios
+const response = await axios.get('https://google.com');
+const curl = r2curl(response);
+
+console.log(curl);
+// stdout "curl -X GET 'https://google.com' -H 'Accept:application/json, text/plain, */*' -H 'User-Agent:axios/0.18.0'"
+```
+
+### `AxiosRequestConfig`
+
+```typescript
+// if js, const r2curl = require('r2curl');
+import r2curl from 'r2curl';
+
+// config as AxiosRequestConfig
+const config = {
+  url: 'https://google.com',
+  method: 'POST',
+  data: {
+    caller: 'curl tester',
+  },
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
 const curl = r2curl(reqeustConfig);
 console.log(curl);
+// stdout `curl -X POST 'https://google.com' -H 'Content-Type:application/json' --data '{"caller":"curl tester"}'`
+
+const response = await axios.request(config);
 ```
 
 ### More Options
