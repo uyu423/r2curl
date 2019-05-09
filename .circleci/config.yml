@@ -11,7 +11,7 @@ jobs:
           command: npm install
       - run:
           name: tslint check
-          command: npx -c ./tslint.json "src/**/*.ts"
+          command: npx tslint -c ./tslint.json "src/**/*.ts"
       - run:
           name: typescript compile & artifact
           command: npm pack
