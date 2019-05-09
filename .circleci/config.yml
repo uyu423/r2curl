@@ -7,11 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: npm-install
+          name: npminstall
           command: npm install
       - run:
           name: tslint check
           command: npx tslint -c ./tslint.json "src/**/*.ts"
+      - run:
+          name: jest
+          command: npm test
       - run:
           name: typescript compile & artifact
           command: npm pack
