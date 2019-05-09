@@ -1,4 +1,7 @@
 # r2curl
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6b96d8b0ded4763aaf8b6a8179fb093)](https://app.codacy.com/app/uyu423/r2curl?utm_source=github.com&utm_medium=referral&utm_content=uyu423/r2curl&utm_campaign=Badge_Grade_Dashboard)
+
 Node.js Request Wrapper (axios, fetch, ..) to cURL Command String
 
 ## Roadmap
