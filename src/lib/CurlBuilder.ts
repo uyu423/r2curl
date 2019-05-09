@@ -1,9 +1,14 @@
-import IRequestAdaptor from './interface/IRequestAdaptor';
-import { BodyHelper } from './lib/BodyHelper';
-import isEmpty from './lib/isEmpty';
+import { IR2CurlOptions } from '../interface/IR2CurlOptions';
+import IRequestAdaptor from '../interface/IRequestAdaptor';
+import { BodyHelper } from './BodyHelper';
+import isEmpty from './isEmpty';
 
 export class CurlBuilder {
-  constructor(private readonly _adap: IRequestAdaptor) {}
+  private readonly outputQuote: '\'' | '"';
+
+  constructor(private readonly _adap: IRequestAdaptor, option: IR2CurlOptions) {
+    this.outputQuote = option.quote === 'single' ? '\'' : '"';
+  }
 
   get method(): string {
     if (isEmpty(this._adap.method)) {
@@ -17,7 +22,7 @@ export class CurlBuilder {
       return '';
     }
     return Object.entries(this._adap.headers)
-      .map(header => `-H '${header[0]}:${header[1]}'`)
+      .map(header => `-H ${this.wrapQuote(`${header[0]}:${header[1]}`)}`)
       .join(' ');
   }
 
@@ -28,15 +33,19 @@ export class CurlBuilder {
     if (isEmpty(body)) {
       return '';
     }
-    return `--data '${helper.toString()}'`;
+    return `--data ${this.wrapQuote(helper.toString())}`;
   }
 
   get url(): string {
-    return `"${this._adap.url}"`;
+    return this.wrapQuote(this._adap.url);
   }
 
   public toString() {
     const existData = [this.method, this.url, this.headers, this.body].filter(data => !isEmpty(data));
     return `curl ${existData.join(' ')}`.trim();
+  }
+
+  private wrapQuote(content: string) {
+    return `${this.outputQuote}${content}${this.outputQuote}`;
   }
 }
