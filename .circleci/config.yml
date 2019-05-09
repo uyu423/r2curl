@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/r2curl
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run:
+          name: npm-install
+          command: npm install
+      - run:
+          name: tslint check
+          command: npx -c ./tslint.json "src/**/*.ts"
+      - run:
+          name: typescript compile & artifact
+          command: npm pack

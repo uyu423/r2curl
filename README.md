@@ -15,10 +15,28 @@ Node.js Request Wrapper (axios, fetch, ..) to cURL Command String
 
 ## Usage
 
+### Basic
+
 ```typescript
-// ts
+// if js, const r2curl = require('r2curl');
 import r2curl from 'r2curl';
 
-const curl = r2curl(reqeustConfig as AxiosRequestConfig);
+// requestConfig as AxiosRequestConfig in axios
+const curl = r2curl(reqeustConfig);
 console.log(curl);
+```
+
+### More Options
+
+```typescript
+import r2curl from 'r2curl';
+
+// option as IR2CurlOptions.ts
+const option = {
+  /** Determines the type of quota around the body and uri. */
+  quote: 'double',
+};
+
+const curl = r2curl(requestConfig, option);
+console.log(curl); 
 ```
