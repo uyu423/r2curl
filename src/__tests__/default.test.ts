@@ -17,6 +17,7 @@ describe('default', () => {
 
     expect(exec.code).toBeLessThan(1);
     expect(curl).toBe(
+      // tslint:disable-next-line:max-line-length
       'curl -X GET \'https://google.com\' -H \'Accept:application/json, text/plain, */*\' -H \'User-Agent:axios/0.18.0\'',
     );
 
@@ -30,7 +31,7 @@ describe('default', () => {
         caller: 'curl tester',
       },
       headers: {
-        'Content-Type': 'application/json',
+        'content-Type': 'application/json',
       },
     };
 
@@ -41,7 +42,7 @@ describe('default', () => {
 
     expect(exec.code).toBeLessThan(1);
     expect(curl).toBe(
-      'curl -X POST \'https://google.com\' -H \'Content-Type:application/json\' --data \'{"caller":"curl tester"}\'',
+      'curl -X POST \'https://google.com\' -H \'content-Type:application/json\' --data \'{"caller":"curl tester"}\'',
     );
     done();
   });

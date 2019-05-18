@@ -1,13 +1,14 @@
 import { IR2CurlOptions } from '../interface/IR2CurlOptions';
 import IRequestAdaptor from '../interface/IRequestAdaptor';
 import { BodyHelper } from './BodyHelper';
-import isEmpty from './isEmpty';
+import { HeaderHelper } from './HeaderHelper';
+import { isEmpty } from './isEmpty';
 
 export class CurlBuilder {
   private readonly outputQuote: '\'' | '"';
 
-  constructor(private readonly _adap: IRequestAdaptor, option: IR2CurlOptions) {
-    this.outputQuote = option.quote === 'single' ? '\'' : '"';
+  constructor(private readonly _adap: IRequestAdaptor, private readonly _option: IR2CurlOptions) {
+    this.outputQuote = _option.quote === 'single' ? '\'' : '"';
   }
 
   get method(): string {
@@ -18,10 +19,12 @@ export class CurlBuilder {
   }
 
   get headers(): string {
-    if (isEmpty(this._adap.headers)) {
+    const helper = new HeaderHelper(this._adap.headers, this._adap.method, this._option);
+    const headers = helper.toObject();
+    if (isEmpty(headers)) {
       return '';
     }
-    return Object.entries(this._adap.headers)
+    return Object.entries(headers)
       .map(header => `-H ${this.wrapQuote(`${header[0]}:${header[1]}`)}`)
       .join(' ');
   }

@@ -1,6 +1,6 @@
 {
   "name": "r2curl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js Request Wrapper (axios, fetch, ..) to cURL Command String",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "npx jest --coverage",
     "test:log": "npx cross-env DEBUG=r2curl:tc:* npx jest --coverage",
+    "test:watch": "npx cross-env DEBUG=r2curl:tc:* npx jest --watch",
     "lint": "npx tslint -c ./tslint.json \"./src/**/*.ts\"",
     "clean": "npm run clean:dist && npm run clean:artifact",
     "clean:artifact": "rm -rf ./*.tgz && true",

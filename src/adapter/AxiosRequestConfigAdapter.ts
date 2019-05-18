@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { HTTP_METHOD } from '../enum/HTTP_METHOD';
 import IRequestAdaptor from '../interface/IRequestAdaptor';
-import isEmpty from '../lib/isEmpty';
+import { isEmpty } from '../lib/isEmpty';
 
 export class AxiosRequestConfigAdapter implements IRequestAdaptor {
   constructor(private readonly _prop: AxiosRequestConfig) {}
