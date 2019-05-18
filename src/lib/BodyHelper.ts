@@ -1,4 +1,4 @@
-import isEmpty from './isEmpty';
+import { isEmpty, isNotEmpty } from './isEmpty';
 
 export class BodyHelper {
   private contentType: string | null;
@@ -37,9 +37,9 @@ export class BodyHelper {
       return null;
     }
     if (
-      !isEmpty(this.contentType) &&
+      isNotEmpty(this.contentType) &&
       this.contentType.includes('application/x-www-form-urlencoded') &&
-      !isEmpty(this._rawBody) &&
+      isNotEmpty(this._rawBody) &&
       typeof this._rawBody === 'object'
     ) {
       return this.getFormBody();

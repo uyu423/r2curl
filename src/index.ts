@@ -4,7 +4,6 @@ import { AxiosRequestConfigAdapter } from './adapter/AxiosRequestConfigAdapter';
 import { defaultR2CurlOptions, IR2CurlOptions } from './interface/IR2CurlOptions';
 import IRequestAdaptor from './interface/IRequestAdaptor';
 import { CurlBuilder } from './lib/CurlBuilder';
-import isEmpty from './lib/isEmpty';
 
 const log = debug('r2curl:index');
 
