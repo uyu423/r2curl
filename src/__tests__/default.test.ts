@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import debug from 'debug';
+// tslint:disable-next-line:no-implicit-dependencies
 import * as shelljs from 'shelljs';
 // tslint:disable-next-line:import-name
 import r2curl from '../index';

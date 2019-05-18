@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import debug from 'debug';
+import * as fetch from 'node-fetch';
 import { AxiosRequestConfigAdapter } from './adapter/AxiosRequestConfigAdapter';
 import { defaultR2CurlOptions, IR2CurlOptions } from './interface/IR2CurlOptions';
 import IRequestAdaptor from './interface/IRequestAdaptor';
