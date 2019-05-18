@@ -1,9 +1,10 @@
 # r2curl
 
-[![npm version](https://badge.fury.io/js/r2curl.svg)](https://badge.fury.io/js/r2curl) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![CircleCI](https://circleci.com/gh/uyu423/r2curl.svg?style=svg)](https://circleci.com/gh/uyu423/r2curl)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f74cdea970d44550a0bff9319e467256)](https://www.codacy.com/app/uyu423/r2curl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=uyu423/r2curl&amp;utm_campaign=Badge_Grade)[![Code Climate](https://codeclimate.com/github/uyu423/r2curl.svg)](https://codeclimate.com/github/uyu423/r2curl) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb19fbd2394b545aefb2/test_coverage)](https://codeclimate.com/github/uyu423/r2curl/test_coverage)
+[![npm version](https://badge.fury.io/js/r2curl.svg)](https://badge.fury.io/js/r2curl) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![CircleCI](https://circleci.com/gh/uyu423/r2curl.svg?style=svg)](https://circleci.com/gh/uyu423/r2curl) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f74cdea970d44550a0bff9319e467256)](https://www.codacy.com/app/uyu423/r2curl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=uyu423/r2curl&amp;utm_campaign=Badge_Grade) [![Code Climate](https://codeclimate.com/github/uyu423/r2curl.svg)](https://codeclimate.com/github/uyu423/r2curl) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb19fbd2394b545aefb2/test_coverage)](https://codeclimate.com/github/uyu423/r2curl/test_coverage)
 
-Node.js Request Wrapper (axios, fetch, ..) to cURL Command String
+<p align="center">
+  <img width="460" src="./logo.png">
+</p>
 
 ## Roadmap
 
