@@ -28,6 +28,12 @@
   - [ ] [request](https://www.npmjs.com/package/request)
   - [ ] ...
 
+## Install
+
+```bash
+npm install r2curl --save
+```
+
 ## Usage
 
 ### axios
