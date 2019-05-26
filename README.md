@@ -6,20 +6,33 @@
   <img width="460" src="./logo.png">
 </p>
 
+## Background
+
+- [r2curl](https://github.com/uyu423/r2curl) was inspired by [@delirius325/axios-curlirize](https://github.com/delirius325/axios-curlirize).
+- axios-curlirize is very convenient. but works as a middleware for axios, and I think this part is black box logic 
+  - it contains potentially asynchronous concurrency issues and difficult-to-manage elements.
+- So I created a new 'Request to cURL' package that is completely independent of the dependencies of axios.
+
+## Feature
+
+- Generates cURL commands completely independently from the outside of the request wrapper package.
+- Provides additional options involved in generating the cURL command.
+- It will be updated soon to be available in packages like [node-fetch](https://www.npmjs.com/package/node-fetch) or [request](https://www.npmjs.com/package/request).
+
 ## Roadmap
 
-  - [x] axios
+  - [x] [axios](https://www.npmjs.com/package/axios)
     - [x] AxiosRequestConfig
     - [x] AxiosResposne
-  - [ ] node-fetch
-  - [ ] request
+  - [ ] [node-fetch](https://www.npmjs.com/package/node-fetch)
+  - [ ] [request](https://www.npmjs.com/package/request)
   - [ ] ...
 
 ## Usage
 
-### Basic
+### axios
 
-### `AxiosResponse`
+#### `AxiosResponse`
 
 ```typescript
 // if js, const r2curl = require('r2curl');
@@ -32,7 +45,7 @@ console.log(curl);
 // stdout "curl -X GET 'https://google.com' -H 'Accept:application/json, text/plain, */*' -H 'User-Agent:axios/0.18.0'"
 ```
 
-### `AxiosRequestConfig`
+#### `AxiosRequestConfig`
 
 ```typescript
 // if js, const r2curl = require('r2curl');
@@ -57,9 +70,19 @@ console.log(curl);
 const response = await axios.request(config);
 ```
 
-### More `r2curl` Options
+### node-fetch
 
-#### `option.quote`
+- update soon (target 0.2.0)
+- see [github project board](https://github.com/uyu423/r2curl/projects/1)
+
+### request
+
+- update soon (target 0.2.0)
+- see [github project board](https://github.com/uyu423/r2curl/projects/1)
+
+## More `r2curl` Options
+
+### `option.quote`
 
 - Determines the type of quota around the body and uri.
 - default is `single`
@@ -77,7 +100,7 @@ const curl = r2curl(requestConfig, option);
 console.log(curl); 
 ```
 
-#### `option.defaultContentType`
+### `option.defaultContentType`
 
 - Determines the default Content-Type header value for `POST` and `PUT` requests.
 - default is `application/json; charset=utf-8`
@@ -100,7 +123,7 @@ console.log(curl);
 // output: curl -X POST 'https://google.com' -H 'Content-Type:application/json5
 ```
 
-#### `option.forceBody`
+### `option.forceBody`
 
 - Accept Body all HTTP Method.
 - By default, Body is not allowed in `GET` and `DELETE` methods.
