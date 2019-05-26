@@ -28,7 +28,8 @@ describe('default', () => {
       url: 'https://google.com',
       method: 'POST',
       data: {
-        caller: 'curl tester',
+        caller: 'https://github.com/uyu423/r2curl',
+        sorry: true,
       },
       headers: {
         'content-Type': 'application/json',
@@ -42,7 +43,8 @@ describe('default', () => {
 
     expect(exec.code).toBeLessThan(1);
     expect(curl).toBe(
-      'curl -X POST \'https://google.com\' -H \'content-Type:application/json\' --data \'{"caller":"curl tester"}\'',
+      // tslint:disable-next-line: max-line-length
+      'curl -X POST \'https://google.com\' -H \'content-Type:application/json\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\''
     );
     done();
   });

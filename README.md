@@ -99,3 +99,29 @@ const curl = r2curl(config, option);
 console.log(curl); 
 // output: curl -X POST 'https://google.com' -H 'Content-Type:application/json5
 ```
+
+#### `option.forceBody`
+
+- Accept Body all HTTP Method.
+- By default, Body is not allowed in `GET` and `DELETE` methods.
+- However, some services such as ElasticSearch should be able to use the Body as a `GET` method. At this point, use this option to activate the Body.
+
+```typescript
+import r2curl from 'r2curl';
+
+const config: AxiosRequestConfig = {
+  url: 'https://google.com',
+  method: 'GET',
+  data: {
+    caller: 'https://github.com/uyu423/r2curl',
+    sorry: true,
+  },
+};
+
+const option = {
+  forceBody: true,
+}
+
+const curl = r2curl(config, option);
+// output: 'curl -X GET \'https://google.com\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\''
+```

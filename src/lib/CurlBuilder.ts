@@ -1,8 +1,11 @@
+import debug from 'debug';
 import { IR2CurlOptions } from '../interface/IR2CurlOptions';
 import IRequestAdaptor from '../interface/IRequestAdaptor';
 import { BodyHelper } from './BodyHelper';
 import { HeaderHelper } from './HeaderHelper';
 import { isEmpty } from './isEmpty';
+
+const log = debug('r2curl:CurlBuilder');
 
 export class CurlBuilder {
   private readonly outputQuote: '\'' | '"';
@@ -30,6 +33,12 @@ export class CurlBuilder {
   }
 
   get body(): string {
+    log(`method: ${this._adap.method}`, `forceBody: ${this._option.forceBody}`, this._adap.body);
+
+    if (!this._option.forceBody && ['GET', 'DELETE'].includes(this._adap.method)) {
+      return '';
+    }
+
     const helper = new BodyHelper(this._adap.headers, this._adap.body);
     const body = helper.toString();
 
