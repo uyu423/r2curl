@@ -15,7 +15,8 @@ describe('content-type r2curl option', () => {
       url: 'https://google.com',
       method: 'POST',
       data: {
-        caller: 'curl tester',
+        caller: 'https://github.com/uyu423/r2curl',
+        sorry: true,
       },
     };
 

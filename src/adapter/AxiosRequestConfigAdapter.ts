@@ -44,9 +44,6 @@ export class AxiosRequestConfigAdapter implements IRequestAdaptor {
   }
 
   get body() {
-    if ([HTTP_METHOD.GET, HTTP_METHOD.DELETE].indexOf(this.method) >= 0) {
-      return {};
-    }
     return this._prop.data;
   }
 

@@ -13,6 +13,7 @@ export default function r2curl(
 ): string {
   const mergedOption: IR2CurlOptions = { ...defaultR2CurlOptions, ...option };
 
+  // judge request wrapper object type
   const adapter: IRequestAdaptor = (() => {
     if (((_request: any): _request is AxiosResponse => 'config' in _request)(request)) {
       // judge request is AxiosResponse
