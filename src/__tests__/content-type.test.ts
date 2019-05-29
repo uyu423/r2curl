@@ -74,4 +74,21 @@ describe('content-type r2curl option', () => {
 
     expect(curl.includes(`Content-Type:`)).toBeFalsy();
   });
+
+  test('if use "forceBody" option, enable default Content-Type', () => {
+    const config: AxiosRequestConfig = {
+      url: 'https://google.com',
+      method: HTTP_METHOD.GET,
+      data: {
+        caller: 'https://github.com/uyu423/r2curl',
+        sorry: true,
+      },
+    };
+
+    const curl = r2curl(config, {
+      forceBody: true,
+    });
+
+    expect(curl.includes(`Content-Type:`)).toBeTruthy();
+  });
 });

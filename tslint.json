@@ -12,7 +12,7 @@
     "quotemark": [true, "single"],
     "variable-name": [true, "allow-leading-underscore"],
     "prefer-array-literal": false,
-    "no-implicit-dependencies": [true, ["shelljs"]],
+    "no-implicit-dependencies": [true, ["shelljs", "axios"]],
     "object-literal-sort-keys": false
   },
   "rulesDirectory": []

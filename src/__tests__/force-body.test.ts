@@ -66,7 +66,9 @@ describe('force-body option', () => {
     // const exec = shelljs.exec(`${curl} --silent > /dev/null`);
     // expect(exec.code).toBeLessThan(1);
 
-    expect(curl).toBe('curl -X GET \'https://google.com\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\'');
+    expect(curl).toBe(
+      'curl -X GET \'https://google.com\' -H \'Content-Type:application/json; charset=utf-8\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\'',
+    );
     done();
   });
 
@@ -86,7 +88,9 @@ describe('force-body option', () => {
     log(curl);
 
     expect(exec.code).toBeLessThan(1);
-    expect(curl).toBe('curl -X DELETE \'https://google.com\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\'');
+    expect(curl).toBe(
+      'curl -X DELETE \'https://google.com\' -H \'Content-Type:application/json; charset=utf-8\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\'',
+    );
     done();
   });
 });
