@@ -110,14 +110,14 @@ console.log(curl);
 
 - Determines the default Content-Type header value for `POST` and `PUT` requests.
 - default is `application/json; charset=utf-8`
-- Type is `(enum) HEADER_CONTENT_TYPE` | `string` | `false`;
+- Type is `(enum) HTTP_HEADER_CONTENT_TYPE` | `string` | `false`;
 - If you give `(boolean) false` to `defaultContentType`, you can disable `Content-Type` Header.
 
 ```typescript
-import r2curl, { HEADER_CONTENT_TYPE } from 'r2curl';
+import r2curl, { HTTP_HEADER_CONTENT_TYPE } from 'r2curl';
 
 // const optionUsingEnum = {
-//   defaultContentType: HEADER_CONTENT_TYPE.TEXT,
+//   defaultContentType: HTTP_HEADER_CONTENT_TYPE.TEXT,
 // };
 const option = {
   defaultContentType: 'application/json5',

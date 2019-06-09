@@ -8,6 +8,9 @@ const log = debug('r2curl:tc:default');
 
 describe('default', () => {
   test('AxiosResponse params will success', async done => {
+    const { devDependencies } = require('../../package.json');
+    const axiosVersion = (devDependencies.axios as string).replace('^', '');
+
     const request = await axios.get('https://google.com');
     const curl = r2curl(request);
 
@@ -18,7 +21,7 @@ describe('default', () => {
     expect(exec.code).toBeLessThan(1);
     expect(curl).toBe(
       // tslint:disable-next-line:max-line-length
-      'curl -X GET \'https://google.com\' -H \'Accept:application/json, text/plain, */*\' -H \'User-Agent:axios/0.18.0\'',
+      `curl -X GET 'https://google.com' -H 'Accept:application/json, text/plain, */*' -H 'User-Agent:axios/${axiosVersion}'`,
     );
 
     done();
@@ -44,7 +47,7 @@ describe('default', () => {
     expect(exec.code).toBeLessThan(1);
     expect(curl).toBe(
       // tslint:disable-next-line: max-line-length
-      'curl -X POST \'https://google.com\' -H \'content-Type:application/json\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\''
+      'curl -X POST \'https://google.com\' -H \'content-Type:application/json\' --data \'{"caller":"https://github.com/uyu423/r2curl","sorry":true}\'',
     );
     done();
   });

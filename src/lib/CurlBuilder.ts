@@ -1,18 +1,17 @@
 import debug from 'debug';
+import { HTTP_METHOD } from '../enum/HTTP_METHOD';
 import { IR2CurlOptions } from '../interface/IR2CurlOptions';
 import IRequestAdaptor from '../interface/IRequestAdaptor';
 import { BodyHelper } from './BodyHelper';
+import CommonUtils from './CommonUtils';
 import { HeaderHelper } from './HeaderHelper';
-import { isEmpty } from './isEmpty';
+import { isEmpty, isNotEmpty } from './isEmpty';
+import { OptionContainer } from './OptionContainer';
 
 const log = debug('r2curl:CurlBuilder');
 
 export class CurlBuilder {
-  private readonly outputQuote: '\'' | '"';
-
-  constructor(private readonly _adap: IRequestAdaptor, private readonly _option: IR2CurlOptions) {
-    this.outputQuote = _option.quote === 'single' ? '\'' : '"';
-  }
+  constructor(private readonly _adap: IRequestAdaptor, private readonly _option: IR2CurlOptions) {}
 
   get method(): string {
     if (isEmpty(this._adap.method)) {
@@ -28,14 +27,14 @@ export class CurlBuilder {
       return '';
     }
     return Object.entries(headers)
-      .map(header => `-H ${this.wrapQuote(`${header[0]}:${header[1]}`)}`)
+      .map(header => `-H ${CommonUtils.wrapQuote(`${header[0]}:${header[1]}`)}`)
       .join(' ');
   }
 
   get body(): string {
     log(`method: ${this._adap.method}`, `forceBody: ${this._option.forceBody}`, this._adap.body);
 
-    if (!this._option.forceBody && ['GET', 'DELETE'].includes(this._adap.method)) {
+    if (!this._option.forceBody && [HTTP_METHOD.GET, HTTP_METHOD.DELETE].includes(this._adap.method)) {
       return '';
     }
 
@@ -45,19 +44,16 @@ export class CurlBuilder {
     if (isEmpty(body)) {
       return '';
     }
-    return `--data ${this.wrapQuote(helper.toString())}`;
+    return `--data ${CommonUtils.wrapQuote(helper.toString())}`;
   }
 
   get url(): string {
-    return this.wrapQuote(this._adap.url);
+    return CommonUtils.wrapQuote(this._adap.url);
   }
 
   public toString() {
     const existData = [this.method, this.url, this.headers, this.body].filter(data => !isEmpty(data));
-    return `curl ${existData.join(' ')}`.trim();
-  }
-
-  private wrapQuote(content: string) {
-    return `${this.outputQuote}${content}${this.outputQuote}`;
+    const curlOptions = OptionContainer.toString();
+    return `curl ${[existData.join(' '), curlOptions].filter(data => isNotEmpty(data)).join(' ')}`.trim();
   }
 }

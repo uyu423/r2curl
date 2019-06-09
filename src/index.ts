@@ -3,6 +3,7 @@ import debug from 'debug';
 import { AxiosRequestConfigAdapter } from './adapter/AxiosRequestConfigAdapter';
 import { defaultR2CurlOptions, IR2CurlOptions } from './interface/IR2CurlOptions';
 import IRequestAdaptor from './interface/IRequestAdaptor';
+import CommonUtils from './lib/CommonUtils';
 import { CurlBuilder } from './lib/CurlBuilder';
 
 const log = debug('r2curl:index');
@@ -12,6 +13,8 @@ export default function r2curl(
   option: Partial<IR2CurlOptions> = {},
 ): string {
   const mergedOption: IR2CurlOptions = { ...defaultR2CurlOptions, ...option };
+
+  CommonUtils.bootstrap(mergedOption);
 
   // judge request wrapper object type
   const adapter: IRequestAdaptor = (() => {
