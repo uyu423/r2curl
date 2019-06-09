@@ -1,3 +1,5 @@
+import { HTTP_HEADER_LOWERCASE } from '../enum/HTTP_HEADER';
+import { HTTP_HEADER_CONTENT_TYPE } from '../enum/HTTP_HEADER_CONTENT_TYPE';
 import { isEmpty, isNotEmpty } from './isEmpty';
 
 export class BodyHelper {
@@ -24,7 +26,9 @@ export class BodyHelper {
       return null;
     }
     const lowerHeaderArray = Object.entries(this._headers);
-    const [contentTypePair] = lowerHeaderArray.filter(header => header[0].toLowerCase() === 'content-type');
+    const [contentTypePair] = lowerHeaderArray.filter(
+      header => header[0].toLowerCase() === HTTP_HEADER_LOWERCASE.CONTENT_TYPE,
+    );
 
     if (isEmpty(contentTypePair)) {
       return null;
@@ -38,7 +42,7 @@ export class BodyHelper {
     }
     if (
       isNotEmpty(this.contentType) &&
-      this.contentType.includes('application/x-www-form-urlencoded') &&
+      this.contentType.includes(HTTP_HEADER_CONTENT_TYPE.FORM_URLENCODED) &&
       isNotEmpty(this._rawBody) &&
       typeof this._rawBody === 'object'
     ) {
