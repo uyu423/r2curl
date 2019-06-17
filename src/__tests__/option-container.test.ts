@@ -10,27 +10,25 @@ import { OptionContainer } from '../lib/OptionContainer';
 
 const log = debug('r2curl:tc:option-container');
 
-// describe('Option Container Class Test Case', () => {
-//   beforeAll(() => {
-//     CommonUtils.bootstrap(defaultR2CurlOptions);
-//   });
+describe('Option Container Class Test Case', () => {
+  beforeAll(() => {
+    CommonUtils.bootstrap(defaultR2CurlOptions);
+  });
 
-//   afterEach(() => {
-//     OptionContainer.___reset();
-//   });
+  test('only add one command', done => {
+    const oc = new OptionContainer();
+    oc.add(CURL_OPTIONS.COMPRESSED);
+    expect(oc.toString()).toBe(CURL_OPTIONS.COMPRESSED);
+    done();
+  });
 
-//   test('only add one command', done => {
-//     OptionContainer.add(CURL_OPTIONS.COMPRESSED);
-//     expect(OptionContainer.toString()).toBe(CURL_OPTIONS.COMPRESSED);
-//     done();
-//   });
-
-//   test('only add one commmad, one value', done => {
-//     OptionContainer.add(CURL_OPTIONS.COMPRESSED, 'Trash Value');
-//     expect(OptionContainer.toString()).toBe(`${CURL_OPTIONS.COMPRESSED} 'Trash Value'`);
-//     done();
-//   });
-// });
+  test('only add one commmad, one value', done => {
+    const oc = new OptionContainer();
+    oc.add(CURL_OPTIONS.COMPRESSED, 'Trash Value');
+    expect(oc.toString()).toBe(`${CURL_OPTIONS.COMPRESSED} 'Trash Value'`);
+    done();
+  });
+});
 
 describe('Option Container Integration Test Case', () => {
   test('include header "Accept-Encoding: gzip"', done => {

@@ -1,4 +1,4 @@
-export function isEmpty<T>(value: T | any): value is null | undefined {
+export function isEmpty<T>(value: T | null | undefined): value is null | undefined {
   if (
     value === undefined ||
     value === null ||
@@ -12,6 +12,6 @@ export function isEmpty<T>(value: T | any): value is null | undefined {
   return false;
 }
 
-export function isNotEmpty<T>(value: T | any): value is T {
+export function isNotEmpty<T>(value: T | null | undefined): value is T {
   return !isEmpty<T>(value);
 }

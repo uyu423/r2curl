@@ -12,7 +12,7 @@ interface ICurlOption {
 }
 
 // tslint:disable-next-line: class-name
-class OptionContainer {
+export class OptionContainer {
   private options: ICurlOption[];
 
   constructor() {
@@ -45,8 +45,3 @@ class OptionContainer {
     this.options = [];
   }
 }
-
-// this container is singletone;
-// tslint:disable-next-line: variable-name
-const container = new OptionContainer();
-export { container as OptionContainer };

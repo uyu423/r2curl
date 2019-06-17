@@ -22,6 +22,7 @@ export class HeaderHelper {
   constructor(
     private readonly _rawHeaders: HttpHeaderType,
     private readonly _method: string,
+    private readonly _curlOptionContainer: OptionContainer,
     private readonly _option: IR2CurlOptions,
   ) {
     this.defaultContentType = _option.defaultContentType === false ? null : _option.defaultContentType;
@@ -96,7 +97,7 @@ export class HeaderHelper {
     );
 
     if (isNotEmpty(rawHeaderAcceptEncoding) && this.pairs[rawHeaderAcceptEncoding] === 'gzip') {
-      OptionContainer.add(CURL_OPTIONS.COMPRESSED);
+      this._curlOptionContainer.add(CURL_OPTIONS.COMPRESSED);
     }
 
     return;

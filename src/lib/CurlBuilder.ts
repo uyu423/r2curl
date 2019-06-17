@@ -11,7 +11,11 @@ import { OptionContainer } from './OptionContainer';
 const log = debug('r2curl:CurlBuilder');
 
 export class CurlBuilder {
-  constructor(private readonly _adap: IRequestAdaptor, private readonly _option: IR2CurlOptions) {}
+  private optionContainer: OptionContainer;
+
+  constructor(private readonly _adap: IRequestAdaptor, private readonly _option: IR2CurlOptions) {
+    this.optionContainer = new OptionContainer();
+  }
 
   get method(): string {
     if (isEmpty(this._adap.method)) {
@@ -21,7 +25,7 @@ export class CurlBuilder {
   }
 
   get headers(): string {
-    const helper = new HeaderHelper(this._adap.headers, this._adap.method, this._option);
+    const helper = new HeaderHelper(this._adap.headers, this._adap.method, this.optionContainer, this._option);
     const headers = helper.toObject();
     if (isEmpty(headers)) {
       return '';
@@ -53,7 +57,7 @@ export class CurlBuilder {
 
   public toString() {
     const existData = [this.method, this.url, this.headers, this.body].filter(data => !isEmpty(data));
-    const curlOptions = OptionContainer.toString();
+    const curlOptions = this.optionContainer.toString();
     return `curl ${[existData.join(' '), curlOptions].filter(data => isNotEmpty(data)).join(' ')}`.trim();
   }
 }
