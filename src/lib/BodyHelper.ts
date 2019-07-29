@@ -1,5 +1,6 @@
 import { HTTP_HEADER_LOWERCASE } from '../enum/HTTP_HEADER';
 import { HTTP_HEADER_CONTENT_TYPE } from '../enum/HTTP_HEADER_CONTENT_TYPE';
+import CommonUtils from './CommonUtils';
 import { isEmpty, isNotEmpty } from './isEmpty';
 
 export class BodyHelper {
@@ -59,6 +60,8 @@ export class BodyHelper {
       .join('&');
   }
   private getTextBody(): string | null {
-    return typeof this._rawBody === 'object' || Array.isArray(this._rawBody) ? JSON.stringify(this._rawBody) : null;
+    return typeof this._rawBody === 'object' || Array.isArray(this._rawBody)
+      ? CommonUtils.jsonStringifyWithEscapeQuote(this._rawBody)
+      : null;
   }
 }

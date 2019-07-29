@@ -13,5 +13,19 @@ export default class CommonUtils {
     return `${this.quote}${content}${this.quote}`;
   }
 
+  /**
+   * If the same quota is present in a quoted string, it will not be properly parsed and added.
+   *
+   * @see https://github.com/uyu423/r2curl/issues/17
+   */
+  public static escapeQuote(content: string): string {
+    const regex = new RegExp(this.quote, 'gi');
+    return content.replace(regex, `\\${this.quote}`);
+  }
+
+  public static jsonStringifyWithEscapeQuote(payload: any): string {
+    return this.escapeQuote(JSON.stringify(payload));
+  }
+
   private static quote: '\'' | '"';
 }
