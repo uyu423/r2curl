@@ -1,6 +1,6 @@
 {
   "name": "r2curl",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Node.js Request Wrapper (axios, fetch, ..) to cURL Command String",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
