@@ -9,7 +9,6 @@
   "jsRules": {},
   "rules": {
     "max-line-length": [true, 130],
-    "quotemark": [true, "single"],
     "variable-name": [true, "allow-leading-underscore"],
     "prefer-array-literal": false,
     "no-implicit-dependencies": [true, ["shelljs", "axios"]],

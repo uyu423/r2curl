@@ -1,12 +1,14 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import debug from 'debug';
-// tslint:disable-next-line:no-implicit-dependencies
-import * as shelljs from 'shelljs';
 import { HTTP_HEADER } from '../enum/HTTP_HEADER';
 import { HTTP_HEADER_CONTENT_TYPE } from '../enum/HTTP_HEADER_CONTENT_TYPE';
 import { HTTP_METHOD } from '../enum/HTTP_METHOD';
-// tslint:disable-next-line:import-name
+// tslint:disable-next-line: import-name
 import r2curl from '../index';
+
+// tslint:disable-next-line:no-implicit-dependencies
+
+// tslint:disable-next-line:import-name
 
 const log = debug('r2curl:tc:content-type');
 
@@ -15,6 +17,23 @@ describe('content-type r2curl option', () => {
     const config: AxiosRequestConfig = {
       url: 'https://google.com',
       method: 'POST',
+      data: {
+        caller: 'https://github.com/uyu423/r2curl',
+        sorry: true,
+      },
+    };
+
+    const curl = r2curl(config);
+
+    log(curl);
+
+    expect(curl.includes(`Content-Type:${HTTP_HEADER_CONTENT_TYPE.JSON_UTF8}`)).toBeTruthy();
+  });
+
+  test('"PATCH" Method has content-type option is json utf8', () => {
+    const config: AxiosRequestConfig = {
+      url: 'https://google.com',
+      method: 'PATCH',
       data: {
         caller: 'https://github.com/uyu423/r2curl',
         sorry: true,
@@ -42,7 +61,7 @@ describe('content-type r2curl option', () => {
     expect(curl.includes(`Content-Type:${defaultContentType}`)).toBeTruthy();
   });
 
-  test('defaultContentType value is \'false\' => not include Content-Type header', () => {
+  test('defaultContentType value is "false" => not include Content-Type header', () => {
     const config: AxiosRequestConfig = {
       url: 'https://google.com',
       method: HTTP_METHOD.PUT,
@@ -114,7 +133,7 @@ describe('difference content-type', () => {
 
     expect(curl).toBe(
       // tslint:disable-next-line:max-line-length
-      'curl -X POST \'https://google.com\' -H \'Content-Type:application/x-www-form-urlencoded\' --data \'caller=https%3A%2F%2Fgithub.com%2Fuyu423%2Fr2curl&sorry=true\'',
+      "curl -X POST 'https://google.com' -H 'Content-Type:application/x-www-form-urlencoded' --data 'caller=https%3A%2F%2Fgithub.com%2Fuyu423%2Fr2curl&sorry=true'",
     );
 
     done();
