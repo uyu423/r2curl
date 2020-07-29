@@ -21,6 +21,9 @@ export class AxiosRequestConfigAdapter implements IRequestAdaptor {
       case 'PUT': {
         return HTTP_METHOD.PUT;
       }
+      case 'PATCH': {
+        return HTTP_METHOD.PATCH;
+      }
       case 'DELETE': {
         return HTTP_METHOD.DELETE;
       }

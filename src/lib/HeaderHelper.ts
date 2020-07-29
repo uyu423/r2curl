@@ -68,11 +68,19 @@ export class HeaderHelper {
 
     const rawHeaderContentType = this.keys.find(key => key === HTTP_HEADER_LOWERCASE.CONTENT_TYPE);
     const isNeedContentType =
-      [HTTP_METHOD.POST as string, HTTP_METHOD.PUT as string].includes(this._method) || this._option.forceBody;
+      [
+        HTTP_METHOD.POST as string,
+        HTTP_METHOD.PUT as string,
+        HTTP_METHOD.PATCH as string,
+      ].includes(this._method) || this._option.forceBody;
 
     log(
       'isNeedContentType',
-      [HTTP_METHOD.POST as string, HTTP_METHOD.PUT as string].includes(this._method),
+      [
+        HTTP_METHOD.POST as string,
+        HTTP_METHOD.PUT as string,
+        HTTP_METHOD.PATCH as string,
+      ].includes(this._method),
       this._option.forceBody,
       'OR CALC',
       isNeedContentType,

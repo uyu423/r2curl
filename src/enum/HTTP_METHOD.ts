@@ -13,4 +13,6 @@ export enum HTTP_METHOD {
   TRACE = 'TRACE',
   // purge is assumed to be non-standard, but it is used in many requests.
   PURGE = 'PURGE',
+  // patch is defined in https://tools.ietf.org/html/rfc5789
+  PATCH = 'PATCH',
 }

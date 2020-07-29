@@ -7,7 +7,7 @@ export interface IR2CurlOptions {
    */
   quote: 'single' | 'double';
   /**
-   * Determines the default Content-Type header value for POST and PUT requests.
+   * Determines the default Content-Type header value for POST, PATCH and PUT requests.
    * @default HTTP_HEADER_CONTENT_TYPE.JSON_UTF8 (appplication/json; charset=utf-8)
    */
   defaultContentType: HTTP_HEADER_CONTENT_TYPE | string | false;
